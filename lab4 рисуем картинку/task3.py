@@ -2,28 +2,27 @@ import graphics as gr
 
 window = gr.GraphWin("Picture", 1000, 1000)
 
+def draw_ray(x_sun, y_sun, x, y):
+    ray = gr.Line(gr.Point(x_sun, y_sun), gr.Point(x, y))
+    ray.draw(window)
+
+def draw_sun():
+    x = 300
+    y = 100
+    for i in range(4):
+        draw_ray(100, 100, x, y)
+        x -= 65
+        y += 65
+    sun = gr.Circle(gr.Point(100, 100), 50)
+    sun.draw(window)
+    sun.setFill('yellow')
+
+
 def draw_sky():
     sky = gr.Rectangle(gr.Point(0,0), gr.Point(1000, 500))
     sky.draw(window)
     sky.setFill('cyan')
-
-def draw_rays():
-    ray1 = gr.Line(gr.Point(100, 100), gr.Point(300, 100))
-    ray1.draw(window)
-
-    ray2 = gr.Line(gr.Point(100, 100), gr.Point(250, 200))
-    ray2.draw(window)
-
-    ray3 = gr.Line(gr.Point(100, 100), gr.Point(200, 250))
-    ray3.draw(window)
-
-    ray4 = gr.Line(gr.Point(100, 100), gr.Point(100, 300))
-    ray4.draw(window)
-
-def draw_sun():
-    sun = gr.Circle(gr.Point(100, 100), 50)
-    sun.draw(window)
-    sun.setFill('yellow')
+    draw_sun()
 
 def draw_sea():
     sea = gr.Rectangle(gr.Point(0, 500), gr.Point(1000, 1000))
@@ -72,6 +71,7 @@ def draw_fish():
     fish_eye.setFill('black')
 
 def draw_cloud(x, y, size):
+    #x, y - координаты центра левого нижнего круга, size - радиус одного круга
     for i in range(3):
         cloud = gr.Circle(gr.Point(x,y),size)
         x += size
@@ -86,28 +86,24 @@ def draw_cloud(x, y, size):
         cloud.setFill('white')
     
     
-
-def draw_birds():
-    bird1 = gr.Polygon(gr.Point(270,200), gr.Point(320,250), gr.Point(370,200),gr.Point(320,270))
-    bird1.draw(window)
-    bird1.setFill('black')
-
-    bird2 = gr.Polygon(gr.Point(200,300), gr.Point(250,350), gr.Point(300,300),gr.Point(250,370))
-    bird2.draw(window)
-    bird2.setFill('black')
-
-
+def draw_bird(x, y):
+    #x, y - координаты левого крыла
+    bird = gr.Polygon(gr.Point(x, y), gr.Point(x + 50, y + 50), gr.Point(x + 100, y), gr.Point(x + 50, y + 70))  
+    bird.draw(window)
+    bird.setFill('black')
+   
 def draw_picture():
     draw_sky()
-    draw_rays()
-    draw_sun()
+    #draw_sun()
+    draw_bird(270, 200)
+    draw_bird(200, 300)
     draw_sea()
     draw_boat()
     draw_fish()
     draw_cloud(800, 100, 30)
     draw_cloud(620, 160, 30)
     draw_cloud(820, 235, 30)
-    draw_birds()
+    #draw_bird()
 
 draw_picture()    
     
