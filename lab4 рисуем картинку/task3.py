@@ -2,11 +2,14 @@ import graphics as gr
 
 window = gr.GraphWin("Picture", 1000, 1000)
 
+
 def draw_ray(x_sun, y_sun, x, y):
+    
     ray = gr.Line(gr.Point(x_sun, y_sun), gr.Point(x, y))
     ray.draw(window)
 
 def draw_sun():
+
     x = 300
     y = 100
     for i in range(4):
@@ -19,17 +22,20 @@ def draw_sun():
 
 
 def draw_sky():
-    sky = gr.Rectangle(gr.Point(0,0), gr.Point(1000, 500))
+
+    sky = gr.Rectangle(gr.Point(0, 0), gr.Point(1000, 500))
     sky.draw(window)
     sky.setFill('cyan')
     draw_sun()
 
 def draw_sea():
+
     sea = gr.Rectangle(gr.Point(0, 500), gr.Point(1000, 1000))
     sea.draw(window)
     sea.setFill('blue')
     
 def draw_boat():
+
     mast = gr.Line(gr.Point(480, 85),gr.Point(480, 450))
     mast.draw(window)
 
@@ -50,6 +56,7 @@ def draw_boat():
     flag.setFill('magenta')
 
 def draw_fish():
+
     fish_fin1 = gr.Polygon(gr.Point(550,620), gr.Point(640,570),gr.Point(650,620))
     fish_fin1.draw(window)
     fish_fin1.setFill('red')
@@ -71,9 +78,10 @@ def draw_fish():
     fish_eye.setFill('black')
 
 def draw_cloud(x, y, size):
+
     #x, y - координаты центра левого нижнего круга, size - радиус одного круга
     for i in range(3):
-        cloud = gr.Circle(gr.Point(x,y),size)
+        cloud = gr.Circle(gr.Point(x, y),size)
         x += size
         cloud.draw(window)
         cloud.setFill('white')
@@ -87,12 +95,14 @@ def draw_cloud(x, y, size):
     
     
 def draw_bird(x, y):
+
     #x, y - координаты левого крыла
     bird = gr.Polygon(gr.Point(x, y), gr.Point(x + 50, y + 50), gr.Point(x + 100, y), gr.Point(x + 50, y + 70))  
     bird.draw(window)
     bird.setFill('black')
    
 def draw_picture():
+
     draw_sky()
     #draw_sun()
     draw_bird(270, 200)
