@@ -2,11 +2,14 @@ import graphics as gr
 
 window = gr.GraphWin("Picture", 1000, 1000)
 
-
+def draw(obj, color):
+    obj.draw(window)
+    obj.setFill(color)
+    
 def draw_ray(x_sun, y_sun, x, y):
     
-    ray = gr.Line(gr.Point(x_sun, y_sun), gr.Point(x, y))
-    ray.draw(window)
+    ray = gr.Line(gr.Point(x_sun, y_sun), gr.Point(x, y)) 
+    draw(ray, 'black')
 
 def draw_sun():
 
@@ -17,65 +20,51 @@ def draw_sun():
         x -= 65
         y += 65
     sun = gr.Circle(gr.Point(100, 100), 50)
-    sun.draw(window)
-    sun.setFill('yellow')
-
+    draw(sun, 'yellow')
 
 def draw_sky():
 
     sky = gr.Rectangle(gr.Point(0, 0), gr.Point(1000, 500))
-    sky.draw(window)
-    sky.setFill('cyan')
-    draw_sun()
-
+    draw(sky, 'cyan')
+    
 def draw_sea():
 
     sea = gr.Rectangle(gr.Point(0, 500), gr.Point(1000, 1000))
-    sea.draw(window)
-    sea.setFill('blue')
+    draw(sea, 'blue')
     
 def draw_boat():
 
     mast = gr.Line(gr.Point(480, 85),gr.Point(480, 450))
-    mast.draw(window)
+    draw(mast, 'black')
 
     sail1 = gr.Polygon(gr.Point(480, 100), gr.Point(480, 400), gr.Point(780,400))
-    sail1.draw(window)
-    sail1.setFill('white')                   
+    draw(sail1,'white')               
 
     sail2 = gr.Polygon(gr.Point(480, 100), gr.Point(480, 400), gr.Point(300,400))
-    sail2.draw(window)
-    sail2.setFill('white')
+    draw(sail2, 'white')
 
     boat = gr.Polygon(gr.Point(200, 450), gr.Point(800, 450), gr.Point(700, 550), gr.Point(300, 550))
-    boat.draw(window)
-    boat.setFill('brown')
+    draw(boat, 'brown')
 
     flag = gr.Polygon(gr.Point(480,50), gr.Point(560,50), gr.Point(530, 70), gr.Point(560,90), gr.Point(480,90))
-    flag.draw(window)
-    flag.setFill('magenta')
+    draw(flag, 'magenta')
 
 def draw_fish():
 
     fish_fin1 = gr.Polygon(gr.Point(550,620), gr.Point(640,570),gr.Point(650,620))
-    fish_fin1.draw(window)
-    fish_fin1.setFill('red')
+    draw(fish_fin1, 'red')
 
     fish_fin2 = gr.Polygon(gr.Point(550,680), gr.Point(640,730),gr.Point(650,680))
-    fish_fin2.draw(window)
-    fish_fin2.setFill('red')
-
+    draw(fish_fin2, 'red')
+    
     fish_body = gr.Oval(gr.Point(500, 600), gr.Point(700, 700))
-    fish_body.draw(window)
-    fish_body.setFill('red')
+    draw(fish_body, 'red')
 
     fish_tail = gr.Polygon(gr.Point(700, 650), gr.Point(750, 700), gr.Point(750,600))
-    fish_tail.draw(window)
-    fish_tail.setFill('red')
+    draw(fish_tail, 'red')
 
     fish_eye = gr.Circle(gr.Point(550, 650), 10)
-    fish_eye.draw(window)
-    fish_eye.setFill('black')
+    draw(fish_eye, 'black')
 
 def draw_cloud(x, y, size):
 
@@ -90,21 +79,18 @@ def draw_cloud(x, y, size):
     for i in range(2):
         cloud = gr.Circle(gr.Point(x,y),size)
         x += size
-        cloud.draw(window)
-        cloud.setFill('white')
+        draw(cloud, 'white')
     
     
 def draw_bird(x, y):
 
     #x, y - координаты левого крыла
     bird = gr.Polygon(gr.Point(x, y), gr.Point(x + 50, y + 50), gr.Point(x + 100, y), gr.Point(x + 50, y + 70))  
-    bird.draw(window)
-    bird.setFill('black')
+    draw(bird, 'black')
    
 def draw_picture():
-
     draw_sky()
-    #draw_sun()
+    draw_sun()
     draw_bird(270, 200)
     draw_bird(200, 300)
     draw_sea()
@@ -113,8 +99,7 @@ def draw_picture():
     draw_cloud(800, 100, 30)
     draw_cloud(620, 160, 30)
     draw_cloud(820, 235, 30)
-    #draw_bird()
-
+   
 draw_picture()    
     
 window.getMouse()
