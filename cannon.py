@@ -7,7 +7,13 @@ canvas = Canvas(root, bg='white')
 canvas.pack(fill=BOTH, expand=1)
 
 g = 9.8  # Ускорение свободного падения для снаряда.
-r = 20 # Радиус пушечного ядра
+r = 20  # Радиус пушечного ядра
+
+
+def draw_cannon():
+    cannon = canvas.create_oval(0, 500, 100, 600, fill='black')
+    cannon_muzzle = canvas.create_line(50, 550, 100, 500, fill='black', width=30)
+
 
 class Cannon:
     max_velocity = 10
@@ -42,12 +48,13 @@ class Cannon:
         """
         pass
 
+
 class Shell:
     standard_radius = 5
 
-    def __init__(self, x, y, Vx, Vy):
+    def __init__(self, x, y, vx, vy):
         self.x, self.y = x, y
-        self.Vx, self.Vy = Vx, Vy
+        self.vx, self.vy = vx, vy
         self.r = standard_raduis
 
     def go(self, dt):
@@ -59,10 +66,10 @@ class Shell:
         :return:
         """
         ax, ay = 0, g
-        self.x += self.Vx*dt + ax*(dt**2)/2
-        self.y += self.Vy*dt + ay*(dt**2)/2
-        self.Vx += ax*dt
-        self.Vy += ay*dt
+        self.x += self.vx*dt + ax*(dt**2)/2
+        self.y += self.vy*dt + ay*(dt**2)/2
+        self.vx += ax*dt
+        self.vy += ay*dt
         # TODO: Уничтожать (в статус deleted) снаряд, когда он касается земли.
 
     def detect_collision(self, other):
@@ -78,9 +85,9 @@ class Shell:
 class Target:
     standard_radius = 5
 
-    def __init__(self, x, y, Vx, Vy):
+    def __init__(self, x, y, vx, vy):
         self.x, self.y = x, y
-        self.Vx, self.Vy = Vx, Vy
+        self.vx, self.vy = vx, vy
         self.r = standard_raduis
 
     def go(self, dt):
@@ -92,10 +99,10 @@ class Target:
         :return:
         """
         ax, ay = 0, g
-        self.x += self.Vx * dt
-        self.y += self.Vy * dt
-        self.Vx += ax * dt
-        self.Vy += ay * dt
+        self.x += self.vx * dt
+        self.y += self.vy * dt
+        self.vx += ax * dt
+        self.vy += ay * dt
         # TODO: Шарики-мишени должны отражаться от стенок
 
     def collide(self, other):
@@ -104,7 +111,9 @@ class Target:
         :param other:
         :return:
         """
-        pass  #TODO
+        pass  # TODO
+
 
 cannon = Cannon(40, 40)
+draw_cannon()
 canvas.bind('<Motion>', cannon.aim)
