@@ -7,7 +7,7 @@ def draw(obj, color):
     
     obj.draw(window)
     obj.setFill(color)
-    
+
     
 def draw_ray(x_sun, y_sun, x, y):
     
@@ -77,7 +77,7 @@ def draw_fish():
 
 def draw_cloud(x, y, size):
 
-    #x, y - координаты центра левого нижнего круга, size - радиус одного круга
+    # x, y - координаты центра левого нижнего круга, size - радиус одного круга
     for i in range(3):
         cloud = gr.Circle(gr.Point(x, y), size)
         x += size
@@ -92,7 +92,7 @@ def draw_cloud(x, y, size):
     
 def draw_bird(x, y):
 
-    #x, y - координаты левого крыла
+    # x, y - координаты левого крыла
     bird = gr.Polygon(gr.Point(x, y), gr.Point(x + 50, y + 50), gr.Point(x + 100, y), gr.Point(x + 50, y + 70))  
     draw(bird, 'black')
    
@@ -109,9 +109,10 @@ def draw_picture():
     draw_cloud(800, 100, 30)
     draw_cloud(620, 160, 30)
     draw_cloud(820, 235, 30)
-   
+
+
 draw_picture()    
-    
+
 window.getMouse()
 
 window.close()

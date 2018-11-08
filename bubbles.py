@@ -15,10 +15,10 @@ balls = []
 for i in range(cnt):
     x = random.randint(r, width-r)
     y = random.randint(r, height-r)
-    dx = random.randint(1, 10)
+    dx = random.randint(1,   10)
     dy = random.randint(1, 10)
     circle = canvas.create_oval(x-r, y-r, x+r, y+r, fill=random.choice(colors))
-    ball = [x, y, dx, dy, circle]
+    ball = [x, y,   dx, dy, circle]
     balls.append(ball)
 
 
@@ -67,8 +67,8 @@ def unfreezer(event):
             freeze = False
             root.after(0, time_handler)
 
-speed_scale = Scale(root, orient=HORIZONTAL, length=300,
-               from_=0, to=10, tickinterval=1, resolution=1)
+
+speed_scale = Scale(root, orient=HORIZONTAL, length=300, from_=0, to=10, tickinterval=1, resolution=1)
 
 speed_scale.pack()
 speed_scale.set(1)
