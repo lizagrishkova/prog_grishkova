@@ -8,7 +8,18 @@ def draw(obj, color):
     obj.draw(window)
     obj.setFill(color)
 
-    
+
+def f(dot):
+
+    return gr.Point(dot[0], dot[1])
+
+
+def draw_polygon(points):
+
+    obj = gr.Polygon(map(f, points))
+    draw(obj, 'black')
+
+
 def draw_ray(x_sun, y_sun, x, y):
     
     ray = gr.Line(gr.Point(x_sun, y_sun), gr.Point(x, y)) 
@@ -44,8 +55,8 @@ def draw_boat():
     mast = gr.Line(gr.Point(480, 85), gr.Point(480, 450))
     draw(mast, 'black')
 
-    sail1 = gr.Polygon(gr.Point(480, 100), gr.Point(480, 400), gr.Point(780, 400))
-    draw(sail1, 'white')               
+    draw_polygon([[480, 100], [480, 400], [780, 400]])
+    # draw(sail1, 'white')
 
     sail2 = gr.Polygon(gr.Point(480, 100), gr.Point(480, 400), gr.Point(300, 400))
     draw(sail2, 'white')
