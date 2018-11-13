@@ -9,40 +9,40 @@ canvas = Canvas(root, bg='white')
 canvas.pack(fill=BOTH, expand=1)
 colors = ['red', 'orange', 'yellow', 'green', 'blue', 'gray', 'black', 'violet', 'cyan']
 cnt = 5
-r = 30
+R = 30
 balls = []
 
 for i in range(cnt):
-    x = random.randint(r, width-r)
-    y = random.randint(r, height-r)
-    dx = random.randint(1,   10)
+    x = random.randint(R, width-R)
+    y = random.randint(R, height-R)
+    dx = random.randint(1, 10)
     dy = random.randint(1, 10)
-    circle = canvas.create_oval(x-r, y-r, x+r, y+r, fill=random.choice(colors))
-    ball = [x, y,   dx, dy, circle]
+    circle = canvas.create_oval(x-R, y-R, x+R, y+R, fill=random.choice(colors))
+    ball = [x, y, dx, dy, circle]
     balls.append(ball)
 
 
 def tick_handler():
     
     global balls
-    for i in range(len(balls)):
-        x, y, dx, dy, circle = balls[i]
-        x += dx
-        y += dy
-        if x < 0:
-            dx = -dx
-            x = 0
-        elif x > width-r:
-            dx = -dx
-            x = width-r
-        if y < 0:
-            dy = -dy
-            y = 0
-        elif y > height-r:
-            dy = -dy
-            y = height-r
-        balls[i] = [x, y, dx, dy, circle]
-        canvas.move(circle, dx, dy)
+    for j in range(len(balls)):
+        x_ball, y_ball, dx_ball, dy_ball, circle_ball = balls[j]
+        x_ball += dx_ball
+        y_ball += dy_ball
+        if x_ball < 0:
+            dx_ball = -dx_ball
+            x_ball = 0
+        elif x_ball > width-R:
+            dx_ball = -dx_ball
+            x_ball = width-R
+        if y_ball < 0:
+            dy_ball = -dy_ball
+            y_ball = 0
+        elif y_ball > height-R:
+            dy_ball = -dy_ball
+            y_ball = height-R
+        balls[j] = [x_ball, y_ball, dx_ball, dy_ball, circle_ball]
+        canvas.move(circle_ball, dx_ball, dy_ball)
 
     
 def time_handler():
@@ -50,7 +50,6 @@ def time_handler():
     global freeze
     speed = speed_scale.get()
     if speed == 0:
-        print("Заморозка")
         freeze = True
         return
     tick_handler()
@@ -58,7 +57,7 @@ def time_handler():
     root.after(sleep_dt, time_handler)
 
     
-def unfreezer(event):
+def unfreezer():
     
     global freeze
     if freeze:
