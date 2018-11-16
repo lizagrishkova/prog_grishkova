@@ -8,11 +8,11 @@ root.geometry('400x400')
 canvas = Canvas(root, bg='white')
 canvas.pack(fill=BOTH, expand=1)
 colors = ['red', 'orange', 'yellow', 'green', 'blue', 'gray', 'black', 'violet', 'cyan']
-cnt = 5
+AMOUNT_OF_BALLS = 5
 R = 30
 balls = []
 
-for i in range(cnt):
+for i in range(AMOUNT_OF_BALLS):
     x = random.randint(R, width-R)
     y = random.randint(R, height-R)
     dx = random.randint(1, 10)
@@ -57,7 +57,7 @@ def time_handler():
     root.after(sleep_dt, time_handler)
 
     
-def unfreezer():
+def unfreezer(event):
     
     global freeze
     if freeze:
