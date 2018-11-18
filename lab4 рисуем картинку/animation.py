@@ -85,7 +85,7 @@ def draw_fish():
 
 def draw_bird(x, y):
     
-    #x, y - координаты левого крыла
+    # x, y - координаты левого крыла
     bird = gr.Polygon(gr.Point(x, y), gr.Point(x + 50, y + 50), gr.Point(x + 100, y), gr.Point(x + 50, y + 70))  
     bird.draw(window)
     bird.setFill('black')
@@ -93,7 +93,7 @@ def draw_bird(x, y):
 
 def draw_cloud(x, y, size):
 
-    #x, y - координаты центра левого нижнего круга, size - радиус одного круга
+    # x, y - координаты центра левого нижнего круга, size - радиус одного круга
     for i in range(3):
         cloud = gr.Circle(gr.Point(x, y), size)
         x += size
@@ -137,20 +137,12 @@ def draw_moving_cloud():
         cloud3.move(10, 0)
         cloud4.move(10, 0)
         cloud5.move(10, 0)
-    
-    
-def draw_bird(x, y):
-
-    #x, y - координаты левого крыла
-    bird = gr.Polygon(gr.Point(x, y), gr.Point(x + 50, y + 50), gr.Point(x + 100, y), gr.Point(x + 50, y + 70))  
-    bird.draw(window)
-    bird.setFill('black')
 
    
 def draw_picture():
 
     draw_sky()
-    #draw_sun()
+    # draw_sun()
     draw_bird(270, 200)
     draw_bird(200, 300)
     draw_sea()
@@ -159,8 +151,8 @@ def draw_picture():
     draw_cloud(800, 100, 30)
     draw_cloud(620, 160, 30)
     draw_moving_cloud()
-    #draw_cloud(820, 235, 30)
-    #draw_bird()
+    # draw_cloud(820, 235, 30)
+
 
 draw_picture()    
     
