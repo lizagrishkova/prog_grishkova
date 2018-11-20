@@ -70,6 +70,8 @@ class BlackDragon(Dragon):
         return self.__quest
 
 
+
+
 # FIXME здесь также должны быть описаны классы RedDragon и BlackDragon
 # красный дракон учит вычитанию, а чёрный -- умножению.
 
