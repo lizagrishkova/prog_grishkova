@@ -9,15 +9,15 @@ def draw(obj, color):
     obj.setFill(color)
 
 
-def f(dot):
+def make_points(dot):
 
     return gr.Point(dot[0], dot[1])
 
 
-def draw_polygon(points):
+def draw_polygon(points, color):
 
-    obj = gr.Polygon(map(f, points))
-    draw(obj, 'black')
+    obj = gr.Polygon(list(map(make_points, points)))
+    draw(obj, color)
 
 
 def draw_ray(x_sun, y_sun, x, y):
@@ -52,35 +52,22 @@ def draw_sea():
     
 def draw_boat():
 
-    mast = gr.Line(gr.Point(480, 85), gr.Point(480, 450))
-    draw(mast, 'black')
-
-    draw_polygon([[480, 100], [480, 400], [780, 400]])
-    # draw(sail1, 'white')
-
-    sail2 = gr.Polygon(gr.Point(480, 100), gr.Point(480, 400), gr.Point(300, 400))
-    draw(sail2, 'white')
-
-    boat = gr.Polygon(gr.Point(200, 450), gr.Point(800, 450), gr.Point(700, 550), gr.Point(300, 550))
-    draw(boat, 'brown')
-
-    flag = gr.Polygon(gr.Point(480, 50), gr.Point(560, 50), gr.Point(530, 70), gr.Point(560, 90), gr.Point(480, 90))
-    draw(flag, 'magenta')
+    draw_polygon([[480, 85], [480, 450]], 'black')  # mast
+    draw_polygon([[480, 100], [480, 400], [780, 400]], 'white')  # sail1
+    draw_polygon([[480, 100], [480, 400], [300, 400]], 'white')  # sail2
+    draw_polygon([[200, 450], [800, 450], [700, 550], [300, 550]], 'brown')  # boat
+    draw_polygon([[480, 50], [560, 50], [530, 70], [560, 90], [480, 90]], 'magenta')  # flag
 
 
 def draw_fish():
 
-    fish_fin1 = gr.Polygon(gr.Point(550, 620), gr.Point(640, 570), gr.Point(650, 620))
-    draw(fish_fin1, 'red')
+    draw_polygon([[550, 620], [640, 570], [650, 620]], 'red')  # fish_fin1
+    draw_polygon([[550, 680], [640, 730], [650, 680]], 'red')  # fish_fin2
 
-    fish_fin2 = gr.Polygon(gr.Point(550, 680), gr.Point(640, 730), gr.Point(650, 680))
-    draw(fish_fin2, 'red')
-    
     fish_body = gr.Oval(gr.Point(500, 600), gr.Point(700, 700))
     draw(fish_body, 'red')
 
-    fish_tail = gr.Polygon(gr.Point(700, 650), gr.Point(750, 700), gr.Point(750, 600))
-    draw(fish_tail, 'red')
+    draw_polygon([[700, 650], [750, 700], [750, 600]], 'red')  # fish_tail
 
     fish_eye = gr.Circle(gr.Point(550, 650), 10)
     draw(fish_eye, 'black')
@@ -104,9 +91,8 @@ def draw_cloud(x, y, size):
 def draw_bird(x, y):
 
     # x, y - координаты левого крыла
-    bird = gr.Polygon(gr.Point(x, y), gr.Point(x + 50, y + 50), gr.Point(x + 100, y), gr.Point(x + 50, y + 70))  
-    draw(bird, 'black')
-   
+    draw_polygon([[x, y], [x + 50, y + 50], [x + 100, y], [x + 50, y + 70]], 'black')  # bird
+
    
 def draw_picture():
     
