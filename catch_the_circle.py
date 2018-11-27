@@ -8,12 +8,14 @@ canv.pack(fill=BOTH, expand=1)
 colors = ['red', 'orange', 'yellow', 'green', 'blue', 'gray', 'black', 'violet', 'cyan']
 cnt_win = 0
 cnt_lose = 0
+cnt_click = 0
 
 
 def draw_circle():
     
-    global r_circle, x_circle, y_circle 
-    root.after(600, draw_circle)
+    global r_circle, x_circle, y_circle, cnt_click
+    cnt_click = 0
+    root.after(1000, draw_circle)
     canv.delete(ALL)
     r_circle = random.randint(10, 150)
     x_circle = random.randint(r_circle, 800-r_circle)
@@ -27,14 +29,16 @@ def draw_circle():
     
 
 def left_button(event):
-
+    global cnt_click
     x = event.x
     y = event.y
     global cnt_win, cnt_lose
-    if (x - x_circle)**2 + (y - y_circle)**2 <= r_circle**2:
+    if (x - x_circle)**2 + (y - y_circle)**2 <= r_circle**2 and cnt_click == 0:
         cnt_win += 1
     else:
-        cnt_lose += 1
+        if (x - x_circle)**2 + (y - y_circle)**2 > r_circle**2:
+            cnt_lose += 1
+    cnt_click += 1
 
 
 root.bind('<Button-1>', left_button)
