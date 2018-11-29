@@ -26,7 +26,7 @@ def draw_ray(x_sun, y_sun, x, y):
 def draw_sun():
     x = 300
     y = 100
-    for i in range(4):
+    for k in range(4):
         draw_ray(100, 100, x, y)
         x -= 65
         y += 65
@@ -69,18 +69,18 @@ def draw_cloud(x, y, size):
     # x, y - координаты центра левого нижнего круга, size - радиус одного круга
     global clouds
     clouds = []
-    for i in range(3):
-        cloud = gr.Circle(gr.Point(x, y), size)
+    for j in range(3):
+        cloud_circle = gr.Circle(gr.Point(x, y), size)
         x += size
-        clouds.append(cloud)
+        clouds.append(cloud_circle)
     x = x - 2.5 * size
     y = y - size
-    for i in range(2):
-        cloud = gr.Circle(gr.Point(x, y), size)
+    for j in range(2):
+        cloud_circle = gr.Circle(gr.Point(x, y), size)
         x += size
-        clouds.append(cloud)
-    for cloud in clouds:
-        draw(cloud, 'white')
+        clouds.append(cloud_circle)
+    for cloud_circle in clouds:
+        draw(cloud_circle, 'white')
 
 
 def draw_bird(x, y):
